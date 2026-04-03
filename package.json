@@ -1,0 +1,20 @@
+{
+  "name": "x-auto-poster",
+  "version": "1.0.0",
+  "description": "AI_RADARのニュース記事をX（Twitter）に自動投稿するツール",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "post-once": "node src/postOnce.js",
+    "test-fetch": "node src/testFetch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.0",
+    "node-cron": "^4.2.1",
+    "oauth-1.0a": "^2.2.6"
+  }
+}
