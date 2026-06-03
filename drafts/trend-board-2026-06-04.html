@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トレンドボード 2026-06-04｜ととのえるAI通信</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#1a1d24; --card2:#222630; --ink:#e8eaed; --sub:#9aa3b2;
+    --accent:#4fd1c5; --accent2:#f6ad55; --hot:#fc8181; --line:#2d3340;
+    --good:#68d391; --warn:#f6e05e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding:28px 16px 80px}
+  .wrap{max-width:1040px;margin:0 auto}
+  header{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  h1{font-size:26px;letter-spacing:.02em}
+  .meta{color:var(--sub);font-size:13px;margin-top:6px}
+  h2{font-size:19px;margin:38px 0 16px;display:flex;align-items:center;gap:10px}
+  h2 .num{background:var(--accent);color:#0f1115;border-radius:8px;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  .lead{color:var(--sub);font-size:14px;margin:-6px 0 16px 40px}
+
+  /* 波タイムライン */
+  .wave{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .wave .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .wave .when{font-size:13px;color:var(--sub);letter-spacing:.08em}
+  .wave .theme{font-size:17px;font-weight:700;margin:8px 0 12px;line-height:1.4}
+  .wave .col.past .theme{color:#8aa0b8}
+  .wave .col.now{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .wave .col.now .theme{color:var(--accent)}
+  .wave .col.next .theme{color:var(--accent2)}
+  .wave ul{list-style:none;font-size:13px;color:var(--sub)}
+  .wave li{padding:4px 0 4px 16px;position:relative}
+  .wave li::before{content:"›";position:absolute;left:0;color:var(--accent)}
+  .arrow{text-align:center;color:var(--line);font-size:30px;margin:6px 0}
+
+  /* ランキング */
+  .rank{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .row{display:grid;grid-template-columns:34px 1fr 132px;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .r{font-weight:700;font-size:18px;color:var(--sub)}
+  .row.top .r{color:var(--accent)}
+  .row .ttl{font-size:14.5px}
+  .row .ttl b{color:#fff}
+  .row .tag{display:inline-block;font-size:11px;color:var(--sub);background:var(--card2);border-radius:5px;padding:1px 7px;margin:5px 6px 0 0}
+  .score{text-align:right}
+  .bar{height:9px;background:var(--card2);border-radius:5px;overflow:hidden;margin-top:5px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .score .n{font-size:13px;color:var(--sub)}
+  .score .n b{color:var(--accent);font-size:16px}
+
+  /* 狙い撃ち */
+  .targets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .t{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:18px}
+  .t.fire{border-color:var(--accent2)}
+  .t .slot{font-size:12px;color:var(--accent2);letter-spacing:.06em;font-weight:700}
+  .t h3{font-size:16px;margin:8px 0 10px;line-height:1.45}
+  .t .why{font-size:13px;color:var(--sub)}
+  .t .pat{font-size:11.5px;color:var(--accent);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+
+  /* 勝ち負け */
+  .pat2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .box{border-radius:14px;padding:18px;font-size:13.5px}
+  .box.win{background:rgba(104,211,145,.08);border:1px solid rgba(104,211,145,.3)}
+  .box.ng{background:rgba(252,129,129,.08);border:1px solid rgba(252,129,129,.3)}
+  .box h4{font-size:14px;margin-bottom:10px}
+  .box.win h4{color:var(--good)} .box.ng h4{color:var(--hot)}
+  .box ul{list-style:none} .box li{padding:3px 0 3px 18px;position:relative;color:var(--sub)}
+  .box.win li::before{content:"✓";position:absolute;left:0;color:var(--good)}
+  .box.ng li::before{content:"✕";position:absolute;left:0;color:var(--hot)}
+
+  /* 壁（伝播ゼロ）アラート */
+  .alert{background:rgba(246,173,85,.08);border:1px solid rgba(246,173,85,.35);border-radius:14px;padding:18px;margin-top:16px}
+  .alert h4{color:var(--accent2);font-size:14px;margin-bottom:8px}
+  .alert .big{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0}
+  .alert .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:96px}
+  .alert .kpi .v{font-size:22px;font-weight:700;color:var(--hot)}
+  .alert .kpi .l{font-size:11px;color:var(--sub)}
+  .alert p{font-size:13px;color:var(--sub)}
+  footer{margin-top:40px;color:var(--sub);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+  a{color:var(--accent)}
+  @media(max-width:760px){.wave,.targets{grid-template-columns:1fr}.pat2{grid-template-columns:1fr}.row{grid-template-columns:28px 1fr 100px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📡 トレンドボード <span style="color:var(--accent)">2026-06-04</span></h1>
+    <div class="meta">ととのえるAI通信／フロー②「トレンドを波で可視化」＋③「狙い撃ち」｜情報源: WebSearch（6/1–4の海外AI・国内大手・官公庁・補助金）＋①CSV実証（5/7–6/3）</div>
+  </header>
+
+  <h2><span class="num">1</span>トレンドの波（先月 → 今月 → 来月）</h2>
+  <div class="lead">5/29ボードで「6月＝中小もエージェント常用へ」と予測 → <b style="color:var(--good)">当たった</b>。今は波の頂点。</div>
+  <div class="wave">
+    <div class="col past">
+      <div class="when">先月（5月）の波</div>
+      <div class="theme">勢力図の逆転 ＆ 価格破壊</div>
+      <ul>
+        <li>AnthropicがOpenAI超え・富士通10万人へClaude</li>
+        <li>DeepSeek V4＝GPT-5.5の1/7コスト</li>
+        <li>Gemini大幅値下げ・検索AIシェア6%→25%</li>
+        <li>政府が500業務に自律AI「源内」</li>
+      </ul>
+    </div>
+    <div class="col now">
+      <div class="when">今月（6月）の波 ★いまここ</div>
+      <div class="theme">エージェントが「日常の道具」に降りてくる</div>
+      <ul>
+        <li>MS Build 2026＝<b style="color:#fff">Windowsがエージェント標準</b>に（Agent Runtime/MAI新モデル）</li>
+        <li>Anthropic「<b style="color:#fff">Claude for Small Business</b>」＝既存ツールにトグルで後付け</li>
+        <li>自治体の<b style="color:#fff">87%</b>がAI導入済み・源内20アプリ本格展開</li>
+        <li>国内大手の削減時間が"数字"で続々（三菱UFJ月22万h等）</li>
+      </ul>
+    </div>
+    <div class="col next">
+      <div class="when">来月（7月）の波（予測）</div>
+      <div class="theme">「任せるAIの管理・安全」＆導入ラッシュ</div>
+      <ul>
+        <li>誰がどうAIを管理するか（MS IQガバナンス/セキュア実行）</li>
+        <li>補助金で中小のツール購入が動く（6/15→次8/25）</li>
+        <li>"エージェント疲れ"と選定・運用の現実論が出始める</li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:14px">★要するに ＝ 5月の「<b>どこが覇権・いくら安いか</b>」から、6月は「<b style="color:var(--accent)">AIが毎日の業務ソフトの中に入り、中小向けに製品化された</b>」フェーズへ。中小・個人にとっての意味は「<b style="color:var(--accent2)">様子見の言い訳がまた1つ消えた・"今ある道具に後付け"で始められる</b>」。</p>
+
+  <h2><span class="num">2</span>今週の頂点ニュース（なぜ伸びるか＝注目度スコア）</h2>
+  <div class="lead">採点軸＝ 速報性／数字の強さ／大企業・官公庁主語／金銭フック／中小の自分ごと化（各5点・計25点）。★＝CSV実証で裏付けあり。</div>
+  <div class="rank">
+    <div class="row top">
+      <div class="r">1</div>
+      <div class="ttl"><b>AI導入補助金2026＝最大450万・補助率4/5・次の締切6/15</b>
+        <div><span class="tag">速報4</span><span class="tag">数字5</span><span class="tag">国5</span><span class="tag">金銭5</span><span class="tag">自分ごと5</span><span class="tag" style="color:var(--good)">★全体MVP 82imp/eng6</span></div>
+      </div>
+      <div class="score"><span class="n"><b>24</b>/25</span><div class="bar"><i style="width:96%"></i></div></div>
+    </div>
+    <div class="row top">
+      <div class="r">2</div>
+      <div class="ttl"><b>自治体の87%がAI導入済み・デジタル庁「源内」20アプリ本格展開</b>
+        <div><span class="tag">速報4</span><span class="tag">数字5</span><span class="tag">官公庁5</span><span class="tag">金銭2</span><span class="tag">自分ごと4</span></div>
+      </div>
+      <div class="score"><span class="n"><b>20</b>/25</span><div class="bar"><i style="width:80%"></i></div></div>
+    </div>
+    <div class="row top">
+      <div class="r">3</div>
+      <div class="ttl"><b>国内大手の削減時間（三菱UFJ月22万h・パナ年44.8万h）</b>
+        <div><span class="tag">速報3</span><span class="tag">数字5</span><span class="tag">大企業4</span><span class="tag">金銭3</span><span class="tag">自分ごと4</span><span class="tag" style="color:var(--good)">★6/3＝85imp 最高値</span></div>
+      </div>
+      <div class="score"><span class="n"><b>19</b>/25</span><div class="bar"><i style="width:76%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">4</div>
+      <div class="ttl">Anthropic「Claude for Small Business」＝既存ツールに後付け
+        <div><span class="tag">速報3</span><span class="tag">数字3</span><span class="tag">海外主語4</span><span class="tag">金銭3</span><span class="tag">自分ごと5</span></div>
+      </div>
+      <div class="score"><span class="n"><b>18</b>/25</span><div class="bar"><i style="width:72%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">5</div>
+      <div class="ttl">MS Build 2026：Office Copilotエージェント／MAI低価格モデル
+        <div><span class="tag">速報5</span><span class="tag">数字3</span><span class="tag">主語5</span><span class="tag">金銭2</span><span class="tag">自分ごと3</span><span class="tag" style="color:var(--hot)">連投警告:3日連続済</span></div>
+      </div>
+      <div class="score"><span class="n"><b>18</b>/25</span><div class="bar"><i style="width:72%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">6</div>
+      <div class="ttl">Anthropic勢力図逆転／MS Copilot "Scout"（"どこが一番"系）
+        <div><span class="tag">速報5</span><span class="tag">数字4</span><span class="tag">主語4</span><span class="tag">金銭1</span><span class="tag">自分ごと2</span><span class="tag" style="color:var(--hot)">★リーチのみ eng0</span></div>
+      </div>
+      <div class="score"><span class="n"><b>16</b>/25</span><div class="bar"><i style="width:64%"></i></div></div>
+    </div>
+  </div>
+
+  <h2><span class="num">3</span>狙い撃ち（過去の勝ち型 × 今週の頂点）＝本日6/4の3本</h2>
+  <div class="lead">1日3本・朝8/昼12/夜21・全予約・リプなし。メディア主役（朝昼）＋補助金は出口1本（夜）。本投稿URLなし／B案（不安・問い）フック。</div>
+  <div class="targets">
+    <div class="t fire">
+      <div class="slot">▶ 朝8:00（メディア主役）</div>
+      <h3>Anthropic「中小向けAI」＝今ある道具に後付け</h3>
+      <div class="why">「AIは大企業のもの」が崩れる新顔。会計・決済ツールにトグルで足すだけ＝自分ごと度MAX。MS連投を断つ非MSネタ。</div>
+      <div class="pat">勝ち型: 中小ど真ん中×具体（PayPal入金→30日資金繰り予測）。85型「数字×1業務着地」を踏襲</div>
+    </div>
+    <div class="t fire">
+      <div class="slot">▶ 昼12:00（メディア主役）</div>
+      <h3>自治体の87%がもうAI／入口は"文章1業務"</h3>
+      <div class="why">「うちはまだ早い」を崩す官公庁×数字。中小も同じ「あいさつ文・議事録」1業務から、に着地。</div>
+      <div class="pat">勝ち型: 官公庁主語×具体数字（5/29 政府源内＝28の上位互換）</div>
+    </div>
+    <div class="t">
+      <div class="slot">▶ 夜21:00（出口・補助金1本）</div>
+      <h3>補助金2026＝次の締切6/15・先に契約すると対象外</h3>
+      <div class="why">全体MVP（82imp/eng6/詳細3）の本丸。6/3の弱角度7impを"締切×失敗回避"の強角度に戻す検証。</div>
+      <div class="pat">勝ち型: 国×具体金額×締切×失敗回避＝金銭フック・自分ごと最強</div>
+    </div>
+  </div>
+
+  <h2><span class="num">4</span>勝ち / 負けパターン（5/7–6/3 CSV実証で更新）</h2>
+  <div class="pat2">
+    <div class="box win">
+      <h4>勝ち（この型で組む）</h4>
+      <ul>
+        <li>大企業/官公庁 × 具体数字 ×「中小も同じ1業務から」着地（6/3＝85）</li>
+        <li>補助金は"角度"で勝つ＝締切×失敗回避（5/29＝82/eng6 全体MVP）</li>
+        <li>B案＝不安・問い・共感フックで入る（Claude正直さ69）</li>
+        <li>図鑑＝"見せる自作コンテンツ"＝唯一の拡散源（URLクリック5・唯一のリポスト）</li>
+        <li>全予約・リプなし・他社主語・ハッシュタグ2・本投稿URLなし</li>
+      </ul>
+    </div>
+    <div class="box ng">
+      <h4>NG（踏むとインプ/エンゲージが死ぬ）</h4>
+      <ul>
+        <li>弱角度の補助金（"選ぶ手間が減った"＝6/3で7imp）</li>
+        <li>"勢力図/どこが一番"の単発（48impでもeng0＝"へぇ"で終わる）</li>
+        <li>同テーマ連投（MS3日連続→議事録34→予告9で枯れ）</li>
+        <li>エッセイ/自己啓発/自分語り（"不機嫌は脳の癖"＝2imp）</li>
+        <li>取説スレッド・自己リプ（軒並み一桁）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert">
+    <h4>⚠ 全期間データの"本当の壁"＝リーチは解決、でも伝播がゼロ（5/7–6/3）</h4>
+    <div class="big">
+      <div class="kpi"><div class="v">0</div><div class="l">新規フォロー（全37投稿）</div></div>
+      <div class="kpi"><div class="v">0</div><div class="l">ブックマーク</div></div>
+      <div class="kpi"><div class="v">0</div><div class="l">共有（シェア）</div></div>
+      <div class="kpi"><div class="v">~1</div><div class="l">リポスト（図鑑のみ）</div></div>
+      <div class="kpi"><div class="v">85</div><div class="l">最高インプ（達成）</div></div>
+    </div>
+    <p>インプは2→85まで伸びたが、フォロー・保存・拡散は1ヶ月まるごと0。「見られても次の行動が起きていない」。<br>
+    残る未着手レバーは2つ＝<b style="color:var(--accent)">①他者へのengagementリプ（1日10分・予約とは別の手作業）</b>／<b style="color:var(--accent)">②図鑑＝見せる枠を固定 or 週末に回す</b>。次フェーズはインプ増ではなく"伝播づくり"。</p>
+  </div>
+
+  <footer>
+    生成: フロー①なぜ伸びたか分析（CSV 5/7–6/3）→②波の可視化（本ボード）→③狙い撃ち→④多投ドラフト（drafts/2026-06-04.md）<br>
+    主な情報源: Microsoft Build 2026（CNBC / eWeek / Windows News）、Anthropic「Claude for Small Business」（Uravation）、総務省 自治体AI調査・デジタル庁「源内」（AI Japan Index）、デジタル化・AI導入補助金2026 第2次締切6/15（it-shien.smrj.go.jp / 中小企業庁）
+  </footer>
+</div>
+</body>
+</html>
