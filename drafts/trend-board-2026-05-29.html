@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トレンドボード 2026-05-29｜ととのえるAI通信</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#1a1d24; --card2:#222630; --ink:#e8eaed; --sub:#9aa3b2;
+    --accent:#4fd1c5; --accent2:#f6ad55; --hot:#fc8181; --line:#2d3340;
+    --good:#68d391; --warn:#f6e05e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding:28px 16px 80px}
+  .wrap{max-width:1040px;margin:0 auto}
+  header{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  h1{font-size:26px;letter-spacing:.02em}
+  .meta{color:var(--sub);font-size:13px;margin-top:6px}
+  h2{font-size:19px;margin:38px 0 16px;display:flex;align-items:center;gap:10px}
+  h2 .num{background:var(--accent);color:#0f1115;border-radius:8px;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  .lead{color:var(--sub);font-size:14px;margin:-6px 0 16px 40px}
+
+  /* 波タイムライン */
+  .wave{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .wave .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .wave .when{font-size:13px;color:var(--sub);letter-spacing:.08em}
+  .wave .theme{font-size:17px;font-weight:700;margin:8px 0 12px;line-height:1.4}
+  .wave .col.past .theme{color:#8aa0b8}
+  .wave .col.now{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .wave .col.now .theme{color:var(--accent)}
+  .wave .col.next .theme{color:var(--accent2)}
+  .wave ul{list-style:none;font-size:13px;color:var(--sub)}
+  .wave li{padding:4px 0 4px 16px;position:relative}
+  .wave li::before{content:"›";position:absolute;left:0;color:var(--accent)}
+  .arrow{text-align:center;color:var(--line);font-size:30px;margin:6px 0}
+
+  /* ランキング */
+  .rank{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .row{display:grid;grid-template-columns:34px 1fr 132px;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .r{font-weight:700;font-size:18px;color:var(--sub)}
+  .row.top .r{color:var(--accent)}
+  .row .ttl{font-size:14.5px}
+  .row .ttl b{color:#fff}
+  .row .tag{display:inline-block;font-size:11px;color:var(--sub);background:var(--card2);border-radius:5px;padding:1px 7px;margin:5px 6px 0 0}
+  .score{text-align:right}
+  .bar{height:9px;background:var(--card2);border-radius:5px;overflow:hidden;margin-top:5px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .score .n{font-size:13px;color:var(--sub)}
+  .score .n b{color:var(--accent);font-size:16px}
+
+  /* 狙い撃ち */
+  .targets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .t{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:18px}
+  .t.fire{border-color:var(--accent2)}
+  .t .slot{font-size:12px;color:var(--accent2);letter-spacing:.06em;font-weight:700}
+  .t h3{font-size:16px;margin:8px 0 10px;line-height:1.45}
+  .t .why{font-size:13px;color:var(--sub)}
+  .t .pat{font-size:11.5px;color:var(--accent);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+
+  /* 勝ち負け */
+  .pat2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .box{border-radius:14px;padding:18px;font-size:13.5px}
+  .box.win{background:rgba(104,211,145,.08);border:1px solid rgba(104,211,145,.3)}
+  .box.ng{background:rgba(252,129,129,.08);border:1px solid rgba(252,129,129,.3)}
+  .box h4{font-size:14px;margin-bottom:10px}
+  .box.win h4{color:var(--good)} .box.ng h4{color:var(--hot)}
+  .box ul{list-style:none} .box li{padding:3px 0 3px 18px;position:relative;color:var(--sub)}
+  .box.win li::before{content:"✓";position:absolute;left:0;color:var(--good)}
+  .box.ng li::before{content:"✕";position:absolute;left:0;color:var(--hot)}
+  footer{margin-top:40px;color:var(--sub);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+  a{color:var(--accent)}
+  @media(max-width:760px){.wave,.targets{grid-template-columns:1fr}.pat2{grid-template-columns:1fr}.row{grid-template-columns:28px 1fr 100px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📡 トレンドボード <span style="color:var(--accent)">2026-05-29</span></h1>
+    <div class="meta">ととのえるAI通信／フロー②「トレンドを波で可視化」 ＋ ③「狙い撃ち」｜情報源: WebSearch（5/26–29の海外AI・国内・補助金）</div>
+  </header>
+
+  <h2><span class="num">1</span>トレンドの波（先月 → 今月 → 来月）</h2>
+  <div class="lead">1つずつ見るとバラバラ。並べると同じ方向を向く。今“波の頂点”にいるネタを狙う。</div>
+  <div class="wave">
+    <div class="col past">
+      <div class="when">先月（4月）の波</div>
+      <div class="theme">AIが「自分で動く・タダになる」</div>
+      <ul>
+        <li>Claude Managed Agents（生産性10倍）</li>
+        <li>DeepSeek V4 無料・1兆パラメータ</li>
+        <li>Karpathyの“メモ帳”手法</li>
+      </ul>
+    </div>
+    <div class="col now">
+      <div class="when">今月（5月）の波 ★いまここ</div>
+      <div class="theme">勢力図の逆転 ＆ 価格破壊</div>
+      <ul>
+        <li>Anthropicが評価額$9000億でOpenAI超え</li>
+        <li>DeepSeek V4＝GPT-5.5の<b style="color:#fff">1/7コスト</b></li>
+        <li>GPT-5.5でエージェントが実用段階に</li>
+        <li>日本政府が<b style="color:#fff">500業務</b>に自律AI「源内」</li>
+      </ul>
+    </div>
+    <div class="col next">
+      <div class="when">来月（6月）の波（予測）</div>
+      <div class="theme">中小・個人もエージェント常用へ</div>
+      <ul>
+        <li>価格破壊で“1人1エージェント”が現実に</li>
+        <li>自律AIが行政・業務の標準に</li>
+        <li>補助金×AIで導入ラッシュ（〜締切）</li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:14px">★要するに ＝ 「どのAIが賢いか」の話から「<b style="color:var(--accent)">AIが業務に実装され、コストが激落ちし、誰が覇権を取るか</b>」のフェーズに変わった。中小・個人にとっての意味は「<b style="color:var(--accent2)">いよいよ自分のコストで使える</b>」。</p>
+
+  <h2><span class="num">2</span>今週の頂点ニュース（なぜ伸びるか＝注目度スコア）</h2>
+  <div class="lead">採点軸＝ 速報性／数字の強さ／大企業・官公庁主語／無料・金銭フック／中小の自分ごと化（各5点・計25点）</div>
+  <div class="rank">
+    <div class="row top">
+      <div class="r">1</div>
+      <div class="ttl"><b>DeepSeek V4が GPT-5.5の1/7コスト・100倍安い</b>
+        <div><span class="tag">速報5</span><span class="tag">数字5</span><span class="tag">海外主語4</span><span class="tag">金銭5</span><span class="tag">自分ごと4</span></div>
+      </div>
+      <div class="score"><span class="n"><b>23</b>/25</span><div class="bar"><i style="width:92%"></i></div></div>
+    </div>
+    <div class="row top">
+      <div class="r">1</div>
+      <div class="ttl"><b>AI導入補助金2026＝最大450万円・補助率4/5</b>
+        <div><span class="tag">速報3</span><span class="tag">数字5</span><span class="tag">国・官公庁5</span><span class="tag">金銭5</span><span class="tag">自分ごと5</span></div>
+      </div>
+      <div class="score"><span class="n"><b>23</b>/25</span><div class="bar"><i style="width:92%"></i></div></div>
+    </div>
+    <div class="row top">
+      <div class="r">3</div>
+      <div class="ttl"><b>日本政府が500以上の業務に自律AI「源内」を導入</b>
+        <div><span class="tag">速報4</span><span class="tag">数字4</span><span class="tag">官公庁5</span><span class="tag">金銭2</span><span class="tag">自分ごと3</span></div>
+      </div>
+      <div class="score"><span class="n"><b>18</b>/25</span><div class="bar"><i style="width:72%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">4</div>
+      <div class="ttl">Anthropicが評価額$9000億でOpenAI超え・初の四半期黒字
+        <div><span class="tag">速報5</span><span class="tag">数字5</span><span class="tag">主語4</span><span class="tag">金銭1</span><span class="tag">自分ごと2</span></div>
+      </div>
+      <div class="score"><span class="n"><b>17</b>/25</span><div class="bar"><i style="width:68%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">5</div>
+      <div class="ttl">Google I/O 2026：個人AIエージェント「Gemini Spark」
+        <div><span class="tag">速報3</span><span class="tag">数字2</span><span class="tag">主語4</span><span class="tag">金銭3</span><span class="tag">自分ごと4</span></div>
+      </div>
+      <div class="score"><span class="n"><b>16</b>/25</span><div class="bar"><i style="width:64%"></i></div></div>
+    </div>
+    <div class="row">
+      <div class="r">6</div>
+      <div class="ttl">ChatGPT/Geminiが東大理三入試で503点・合格者最高点超え
+        <div><span class="tag">速報3</span><span class="tag">数字4</span><span class="tag">主語4</span><span class="tag">金銭1</span><span class="tag">自分ごと2</span></div>
+      </div>
+      <div class="score"><span class="n"><b>14</b>/25</span><div class="bar"><i style="width:56%"></i></div></div>
+    </div>
+  </div>
+
+  <h2><span class="num">3</span>狙い撃ち（過去の勝ち型 × 今週の頂点）</h2>
+  <div class="lead">4月ペース＝1日3〜4本・時間帯を散らす。本投稿はURLなし／リンクはリプ1本に集約。</div>
+  <div class="targets">
+    <div class="t fire">
+      <div class="slot">▶ 朝7:00 / 昼12:00</div>
+      <h3>DeepSeek V4が GPT-5.5の1/7価格</h3>
+      <div class="why">価格破壊フック。「高いAIしか選択肢がない」が崩れ、中小・個人が現実的に使える段階に。</div>
+      <div class="pat">勝ち型: 4/4 DeepSeek＝378インプ の直系（無料/激安×大企業×速報）</div>
+    </div>
+    <div class="t fire">
+      <div class="slot">▶ 昼12:00 / 夕18:00</div>
+      <h3>AI補助金450万円・補助率4/5</h3>
+      <div class="why">金銭フック最強・自分ごと度MAX。「先に契約すると対象外」の順番ネタが効く（5/23＝33インプの継続）。</div>
+      <div class="pat">勝ち型: 国・官公庁主語×具体金額×締切。自分ごと化No.1</div>
+    </div>
+    <div class="t">
+      <div class="slot">▶ 夕18:00 / 夜21:00</div>
+      <h3>政府が500業務に自律AI「源内」</h3>
+      <div class="why">官公庁×自律AIの新鮮ネタ。「国がやる＝もう特別じゃない」で中小の背中を押す。</div>
+      <div class="pat">勝ち型: 4/7 電通デジ＝272 と同型（大組織×数字×実装）</div>
+    </div>
+  </div>
+
+  <h2><span class="num">4</span>勝ち / 負けパターン（過去90日CSV実証）</h2>
+  <div class="pat2">
+    <div class="box win">
+      <h4>勝ち（この型で組む）</h4>
+      <ul>
+        <li>速報 × 数字 × 他社（大企業/官公庁）主語</li>
+        <li>無料・◯円・◯%・◯倍の金銭フック</li>
+        <li>1行目で完結する一文・本投稿URLなし</li>
+        <li>大企業ニュースを「中小なら〜」に翻訳</li>
+        <li>毎日・1日3〜4本・時間帯散らし（4月実績）</li>
+      </ul>
+    </div>
+    <div class="box ng">
+      <h4>NG（踏むとインプ最悪値）</h4>
+      <ul>
+        <li>本投稿1行目で自社主語（「弊社の」）</li>
+        <li>本投稿にURL（必ずリプへ）</li>
+        <li>1リプにURL2本以上（5/24＝最悪値）</li>
+        <li>ハッシュタグ4個以上</li>
+        <li>抽象哲学短文・煽り型</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    生成: フロー①なぜ伸びたか分析（CSV）→②波の可視化（本ボード）→③狙い撃ち→④多投ドラフト（drafts/2026-05-29.md）<br>
+    主な情報源: VentureBeat(DeepSeek V4)、ITmedia「OpenAI一強の終焉」、中小企業庁 デジタル化・AI導入補助金2026、窓の杜 Google I/O 2026、awak.co.jp AIニュース速報
+  </footer>
+</div>
+</body>
+</html>
